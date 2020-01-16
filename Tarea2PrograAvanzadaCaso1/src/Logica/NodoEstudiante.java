@@ -8,5 +8,5 @@ package Logica;
  *
  */
 public class NodoEstudiante {
-
+	
 }
