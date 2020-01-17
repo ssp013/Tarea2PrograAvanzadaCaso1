@@ -9,11 +9,11 @@ import ucn.*;
  *
  */
 public class ListaEstudiantes {
-	private  NodoEstudiante first;
-	private  NodoEstudiante last;
+	NodoEstudiante first;
+	NodoEstudiante last;
 	public ListaEstudiantes() {
-		this.first = null;
-		this.last = null;
+		first = null;
+		last = null;
 	}
 	public NodoEstudiante getFirst() {
 		return first;
@@ -111,18 +111,6 @@ public class ListaEstudiantes {
 		}
 		else {
 			return false;
-		}
-	}
-	public Estudiante buscarEstudiante(String Rut) {
-		NodoEstudiante current = first;
-		while(current!=null && current.getEstudiante().getRut()!=Rut) {
-			current = current.getNext();
-		}
-		if(current!=null) {
-			Estudiante estudiante = current.getEstudiante();
-			return estudiante;
-		}else {
-			return null;
 		}
 	}
 }

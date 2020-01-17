@@ -31,6 +31,19 @@ public class App {
 		String resp = sistema.ObtenerInformacionActividadTitulacion();
 		StdOut.println(resp);
 	}
+	public static void DesplegarEstudianteBuscado(SistemaActividad sistema) {
+		StdOut.println("*****************************************************************");
+		StdOut.println("Información de todas las actividades de titulación");
+		StdOut.println("*****************************************************************");
+		StdOut.println("Ingrese el Rut del estudiante que desea revisar:");
+		String rut = StdIn.readString();
+		String resp = sistema.ObtenerDatosdeEstudiante(rut);
+		if(resp==null) {
+			StdOut.println("No hay se presenta ese rut");
+		}else {
+		StdOut.println(resp);
+		}
+	}
 	/**
 	 * @param args
 	 */
@@ -39,15 +52,17 @@ public class App {
 		SistemaActividad sistema = new SistemaActividadImpl();
 		//abrirArchivo(sistema);
 		sistema.ingresarEstudiante("19100657", "Seba", "01","hola");
+		sistema.ingresarActividadTitulacion("01", "hola", "19100657","Seba");		
 		sistema.ingresarEstudiante("19100658", "Seba2", "02","hola2");
-		sistema.ingresarEstudiante("123", "Seba3", "03","hola3");
-		sistema.ingresarActividadTitulacion("01", "hola", "19100657","Seba");
 		sistema.ingresarActividadTitulacion("02", "hola2", "19100658","Seba2");
+		sistema.ingresarEstudiante("123", "Seba3", "03","hola3");
 		sistema.ingresarActividadTitulacion("03", "hola3", "123","Seba3");
+		sistema.ingresarEstudiante("1234", "Seba4", "03","hola3");
 		sistema.ingresarActividadTitulacion("03", "hola3", "1234","Seba4");
-	;
+	
 		
 		DesplegarActividadTitulacion(sistema);
+		DesplegarEstudianteBuscado(sistema);
 		
 	}
 

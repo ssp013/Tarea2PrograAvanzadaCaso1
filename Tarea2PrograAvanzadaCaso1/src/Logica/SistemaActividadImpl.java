@@ -5,7 +5,6 @@ package Logica;
 import Dominio.*;
 import ucn.*;
 import java.util.*;
-
 /**
  * @author sebastiansanchez
  *
@@ -13,6 +12,7 @@ import java.util.*;
 public class SistemaActividadImpl implements SistemaActividad {
 	private ListaEstudiantes Le;
 	private List<ActividadTitulacion>ActTitulacion;
+
 	/**
 	 * 
 	 */
@@ -29,23 +29,16 @@ public class SistemaActividadImpl implements SistemaActividad {
 			ActTitulacion.add(actividad);			
 			Estudiante estudiante = new Estudiante(Rut,Nombre, actividad);
 			ListaEstudiantes le = actividad.getLE();
-			le.insertarUltimo(estudiante);
+			le.insertarPrimer(estudiante);
 		}else {
 			Estudiante estudiante = new Estudiante(Rut,Nombre, actividad);
 			ListaEstudiantes le = actividad.getLE();
 			le.insertarUltimo(estudiante);
-			StdOut.println("1");
 		}
 	}
 	@Override
 	public void ingresarEstudiante(String Rut, String Nombre, String codActividad,String tema) {
 		// TODO Auto-generated method stub
-		/*ActividadTitulacion actividad = new ActividadTitulacion(codActividad,tema);
-		Estudiante estu = Le.buscarEstudiante(Rut);
-		if(estu==null) {
-			Estudiante estudiante = new Estudiante(Rut,Nombre,actividad);
-			Le.insertarUltimo(estudiante);
-		}*/
 		ActividadTitulacion actividad = new ActividadTitulacion(codActividad,tema);
 		Estudiante estudiante = new Estudiante(Rut,Nombre,actividad);
 		Le.insertarUltimo(estudiante);
@@ -61,40 +54,46 @@ public class SistemaActividadImpl implements SistemaActividad {
 			} 
 		}
 		return resp;
-	}
+	}	
 	@Override
-	public String ObtenerInformacionActividadTitulacion() {
-		//desplegarAdelante(Le);
-		String respuesta ="";
-		// TODO Auto-generated method stub
-		if(!this.ActTitulacion.isEmpty()){
-			for(ActividadTitulacion actividad: this.ActTitulacion){
-				respuesta=respuesta + "Código: "+actividad.getCodActividad()+
-				 ", Tema : "+actividad.getTemaActividad()+"\n";
-				respuesta = respuesta + "*Lista de estudiantes: \n";
-				ListaEstudiantes le = actividad.getLE();
-				respuesta= respuesta+ desplegarAdelante(le)+"\n";
-			}
-			return respuesta;
-		}
-		return "No hay Actividades de titulación";
-	}
-	
-	@Override
-	public void desplegarLista(){ 
-		Iterator<ActividadTitulacion> it = ActTitulacion.iterator();
+	public String ObtenerInformacionActividadTitulacion(){ 
+		String resp = "";
+		Iterator<ActividadTitulacion> it = ActTitulacion.iterator();//Iterador
 		while (it.hasNext()) {
-		ActividadTitulacion actividad = (ActividadTitulacion) it.next();
-		StdOut.println("Alumno: "+alumno.getNombre());
-		} 
+			ActividadTitulacion actividad = (ActividadTitulacion) it.next();
+			String codigo = actividad.getCodActividad();
+			String tema = actividad.getTemaActividad();
+			ListaEstudiantes lista = actividad.getLE();
+			resp=resp+"Código: "+codigo+" - Tema:"+tema+"\n";
+			NodoEstudiante current = lista.first;
+			int cont=0;
+			while(current!=null) {
+				cont++;
+				resp=resp+"Estudiante Nº"+cont+" : "+current.getEstudiante().getNombre()+"\n";
+				current=current.getNext();
+			}
+		}
+		return resp;
 	}	
 	
 	
 	@Override
 	public String ObtenerDatosdeEstudiante(String Rut) {
 		// TODO Auto-generated method stub
-
-		return null;
+		String resp="";
+		if(!Le.isEmpty()) {
+			NodoEstudiante nodo = Le.first;
+			while(nodo.equals(null)) {
+				Estudiante est = nodo.getEstudiante();
+				if(est.getRut().equals(Rut)) {
+					resp=resp+"Rut: "+est.getRut()+", Nombre: "+est.getNombre()+", Actividad Titulacion"+est.getActividad().getCodActividad()+", Tema: "+est.getActividad().getTemaActividad()+"\n";
+					break;
+				}
+			}
+			return resp;
+		}else {
+			return null;
+		}
 	}
 	@Override
 	public String ObtenerCantidadEstudiante() {
@@ -104,6 +103,7 @@ public class SistemaActividadImpl implements SistemaActividad {
 	@Override
 	public String ObteneCantidadActividadesdeTitulacion() {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

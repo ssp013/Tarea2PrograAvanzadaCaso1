@@ -46,6 +46,6 @@ public interface SistemaActividad {
 	 * @return si existe o no la actividad de titulación
 	 */
 	public boolean Contiene(String codigo);
-	public void desplegarLista();
+	
 
 }
