@@ -24,7 +24,6 @@ public class SistemaActividadImpl implements SistemaActividad {
 	@Override
 	public void ingresarActividadTitulacion(String codActividad, String Tema, String Rut,String Nombre) {
 		// TODO Auto-generated method stub
-	
 		ActividadTitulacion actividad = new ActividadTitulacion(codActividad,Tema);
 		boolean respuesta = Contiene(codActividad);
 		ListaEstudiantes listaE = actividad.getLE();
@@ -97,6 +96,7 @@ public class SistemaActividadImpl implements SistemaActividad {
 			respuesta= respuesta+ "Rut: "+current.getEstudiante().getRut()+"\n";
 			current = current.getNext();
 		}
+		StdOut.println(respuesta);
 		return respuesta;
 	}
 	@Override

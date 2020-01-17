@@ -20,15 +20,15 @@ public class App {
 			String CodActividad = regEnt.getString();
 			String TemaActividad = regEnt.getString();
 			sistema.ingresarEstudiante(RutEstudiante, NombreEstudiante, CodActividad,TemaActividad);
-			sistema.ingresarActividadTitulacion(CodActividad, TemaActividad, RutEstudiante);
+			sistema.ingresarActividadTitulacion(CodActividad, TemaActividad, RutEstudiante, NombreEstudiante);
 		}
 		arch1.close(); 
 	}
 	public static void DesplegarActividadTitulacion(SistemaActividad sistema) {
-		String resp = sistema.ObtenerInformacionActividadTitulacion();
 		StdOut.println("*****************************************************************");
 		StdOut.println("Información de todas las actividades de titulación");
 		StdOut.println("*****************************************************************");
+		String resp = sistema.ObtenerInformacionActividadTitulacion();
 		StdOut.println(resp);
 	}
 	/**
