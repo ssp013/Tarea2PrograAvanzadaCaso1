@@ -124,7 +124,7 @@ public class ListaEstudiantes {
 			return false;
 		}
 	}
-	public boolean insertarDespues(String Rut,Estudiante estudiante) {
+	public boolean insertarDespues(int Rut,Estudiante estudiante) {
 		NodoEstudiante current = first;
 		while(current!=null && current.getEstudiante().getRut() !=Rut) {
 			current = current.getNext();
@@ -145,7 +145,7 @@ public class ListaEstudiantes {
 			return false;
 		}
 	}
-	public boolean eliminarClave(String Rut) {
+	public boolean eliminarClave(int Rut) {
 		NodoEstudiante current = first;
 		while(current != null && current.getEstudiante().getRut()!=Rut) {
 			current = current.getNext();
