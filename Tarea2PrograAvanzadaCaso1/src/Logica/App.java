@@ -41,11 +41,10 @@ public class App {
 		sistema.ingresarEstudiante("19100657", "Seba", "01","hola");
 		sistema.ingresarEstudiante("19100658", "Seba2", "02","hola2");
 		sistema.ingresarEstudiante("123", "Seba3", "03","hola3");
-
-		
 		sistema.ingresarActividadTitulacion("01", "hola", "19100657","Seba");
 		sistema.ingresarActividadTitulacion("02", "hola2", "19100658","Seba2");
 		sistema.ingresarActividadTitulacion("03", "hola3", "123","Seba3");
+		sistema.ingresarActividadTitulacion("03", "hola3", "1234","Seba4");
 	;
 		
 		DesplegarActividadTitulacion(sistema);

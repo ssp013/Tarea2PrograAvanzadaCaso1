@@ -25,19 +25,16 @@ public class SistemaActividadImpl implements SistemaActividad {
 	public void ingresarActividadTitulacion(String codActividad, String Tema, String Rut,String Nombre) {
 		// TODO Auto-generated method stub
 		ActividadTitulacion actividad = new ActividadTitulacion(codActividad,Tema);
-		boolean respuesta = Contiene(codActividad);
-		ListaEstudiantes listaE = actividad.getLE();
-		if(respuesta==false) {
-			ActTitulacion.add(actividad);	
-			Estudiante estbuscado = Le.buscarEstudiante(Rut);//Existirá el estudiante?? en la lista global?
-			if(estbuscado!=null) {
-				listaE.insertarUltimo(estbuscado);
-			}
+		if(Contiene(codActividad)==false) {
+			ActTitulacion.add(actividad);			
+			Estudiante estudiante = new Estudiante(Rut,Nombre, actividad);
+			ListaEstudiantes le = actividad.getLE();
+			le.insertarUltimo(estudiante);
 		}else {
-			Estudiante estbuscado = Le.buscarEstudiante(Rut);//Existirá el estudiante?? en la lista global?
-			if(estbuscado!=null) {
-				listaE.insertarUltimo(estbuscado);
-			}
+			Estudiante estudiante = new Estudiante(Rut,Nombre, actividad);
+			ListaEstudiantes le = actividad.getLE();
+			le.insertarUltimo(estudiante);
+			StdOut.println("1");
 		}
 	}
 	@Override
@@ -82,22 +79,22 @@ public class SistemaActividadImpl implements SistemaActividad {
 		}
 		return "No hay Actividades de titulación";
 	}
-		@Override
+	
+	@Override
+	public void desplegarLista(){ 
+		Iterator<ActividadTitulacion> it = ActTitulacion.iterator();
+		while (it.hasNext()) {
+		ActividadTitulacion actividad = (ActividadTitulacion) it.next();
+		StdOut.println("Alumno: "+alumno.getNombre());
+		} 
+	}	
+	
+	
+	@Override
 	public String ObtenerDatosdeEstudiante(String Rut) {
 		// TODO Auto-generated method stub
 
 		return null;
-	}
-	@Override
-	public String desplegarAdelante(ListaEstudiantes listaEstudiante) {
-		String respuesta = "";
-		NodoEstudiante current = listaEstudiante.getFirst();
-		while(current!=null) {
-			respuesta= respuesta+ "Rut: "+current.getEstudiante().getRut()+"\n";
-			current = current.getNext();
-		}
-		StdOut.println(respuesta);
-		return respuesta;
 	}
 	@Override
 	public String ObtenerCantidadEstudiante() {
