@@ -39,7 +39,7 @@ public class App {
 		String rut = StdIn.readString();
 		String resp = sistema.ObtenerDatosdeEstudiante(rut);
 		if(resp==null) {
-			StdOut.println("No hay se presenta ese rut");
+			StdOut.println("No se presenta ese rut!");
 		}else {
 		StdOut.println(resp);
 		}

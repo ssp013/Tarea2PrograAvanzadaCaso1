@@ -8,10 +8,10 @@ package Dominio;
  *
  */
 public class Estudiante {
-	private String Rut;
+	private int Rut;
 	private String Nombre;
 	private ActividadTitulacion Actividad;
-	public Estudiante(String Rut, String Nombre, ActividadTitulacion Actividad) {
+	public Estudiante(int Rut, String Nombre, ActividadTitulacion Actividad) {
 		this.Rut = Rut;
 		this.Nombre = Nombre;
 		this.Actividad = Actividad;
@@ -19,13 +19,13 @@ public class Estudiante {
 	/**
 	 * @return the rut
 	 */
-	public String getRut() {
+	public int getRut() {
 		return Rut;
 	}
 	/**
 	 * @param rut the rut to set
 	 */
-	public void setRut(String rut) {
+	public void setRut(int rut) {
 		Rut = rut;
 	}
 	/**
