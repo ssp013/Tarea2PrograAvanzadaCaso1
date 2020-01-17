@@ -13,8 +13,16 @@ public interface SistemaActividad {
 	* @param Rut
 	* @param Nombre
 	* @param codActividad
+	* @param tema
 	*/
-	public void ingresarEstudiante(String Rut, String Nombre, String codActividad);
+	public void ingresarEstudiante(String Rut, String Nombre, String codActividad,String tema);
+	/**
+	* Insertar un actividad de titulación 
+	* @param codActividad
+	* @param Tema
+	* @param Rut
+	*/
+	public void ingresarActividadTitulacion(String codActividad, String Tema, String Rut,String Nombre);
 	/**
 	* Obtener información de las actividades de titulación.
 	* @return Informacion de la actividad de titulación, junto con los estudiantes que la componen */
@@ -33,5 +41,11 @@ public interface SistemaActividad {
 	* Obtiene la cantidad de actividades de titulación
 	* @return Cantidad de actividades de titulación */
 	public String ObteneCantidadActividadesdeTitulacion();
+	/**
+	 * @param codigo
+	 * @return si existe o no la actividad de titulación
+	 */
+	public boolean Contiene(String codigo);
+	public String desplegarAdelante(ListaEstudiantes listaEstudiante);
 
 }

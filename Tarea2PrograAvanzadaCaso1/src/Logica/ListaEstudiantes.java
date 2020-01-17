@@ -3,16 +3,23 @@
  */
 package Logica;
 import Dominio.*;
+import ucn.*;
 /**
  * @author sebastiansanchez
  *
  */
 public class ListaEstudiantes {
-	private NodoEstudiante first;
-	private NodoEstudiante last;
+	private  NodoEstudiante first;
+	private  NodoEstudiante last;
 	public ListaEstudiantes() {
 		this.first = null;
 		this.last = null;
+	}
+	public NodoEstudiante getFirst() {
+		return first;
+	}
+	public NodoEstudiante getLast() {
+		return last;
 	}
 	public boolean isEmpty() {
 		return first == null;
@@ -106,25 +113,16 @@ public class ListaEstudiantes {
 			return false;
 		}
 	}
-	public String desplegarListaEstudiantes() {
-		String dato="";
-		if (ListaEstudiantes.this.first != null) { //Lista no vacía 
-			NodoEstudiante current = ListaEstudiantes.this.first.getNext();
-			while (current != ListaEstudiantes.this.first) {
-				dato=dato+"Rut: "+current.getEstudiante().getRut()
-						+" , Nombre: "+current.getEstudiante().getNombre()
-						+", Actividad de Titulación: "+current.getEstudiante().getActividad().getTemaActividad()
-						+"\n";
-				current = current.getNext(); 
-			}
-			//Falta el último nodo
-			dato=dato+"Rut: "+current.getEstudiante().getRut()
-					+" , Nombre: "+current.getEstudiante().getNombre()
-					+", Actividad de Titulación: "+current.getEstudiante().getActividad().getTemaActividad()
-					+"\n";
-			return dato;
+	public Estudiante buscarEstudiante(String Rut) {
+		NodoEstudiante current = first;
+		while(current!=null && current.getEstudiante().getRut()!=Rut) {
+			current = current.getNext();
+		}
+		if(current!=null) {
+			Estudiante estudiante = current.getEstudiante();
+			return estudiante;
 		}else {
-			return "Lista Vacía";
+			return null;
 		}
 	}
 }

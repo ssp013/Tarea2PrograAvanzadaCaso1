@@ -11,10 +11,10 @@ public class ActividadTitulacion {
 	private String CodActividad;
 	private String TemaActividad;
 	private ListaEstudiantes LE;
-	public ActividadTitulacion(String CodActividad,String TemaActividad,ListaEstudiantes LE) {
+	public ActividadTitulacion(String CodActividad,String TemaActividad) {
 		this.CodActividad = CodActividad;
 		this.TemaActividad = TemaActividad;
-		this.LE = LE;
+		LE = new ListaEstudiantes();
 	}
 	/**
 	 * @return the codActividad
@@ -52,5 +52,4 @@ public class ActividadTitulacion {
 	public void setLE(ListaEstudiantes lE) {
 		LE = lE;
 	}
-	
 }
