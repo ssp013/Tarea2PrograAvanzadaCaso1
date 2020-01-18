@@ -52,4 +52,8 @@ public class ActividadTitulacion {
 	public void setLE(ListaEstudiantes lE) {
 		LE = lE;
 	}
+    @Override
+    public String toString() {
+        return "Código Actividad: "+CodActividad+", Tema: "+TemaActividad+"\n"+LE.toString();
+    }
 }

@@ -19,8 +19,8 @@ public class App {
 			String NombreEstudiante = regEnt.getString();
 			String CodActividad = regEnt.getString();
 			String TemaActividad = regEnt.getString();
-			sistema.ingresarEstudiante(RutEstudiante, NombreEstudiante, CodActividad,TemaActividad);
 			sistema.ingresarActividadTitulacion(CodActividad, TemaActividad, RutEstudiante, NombreEstudiante);
+			sistema.ingresarEstudiante(RutEstudiante, NombreEstudiante, CodActividad,TemaActividad);
 		}
 		arch1.close(); 
 	}
@@ -44,26 +44,57 @@ public class App {
 		StdOut.println(resp);
 		}
 	}
+	public static void CantidadEstudiantesActividad(SistemaActividad sistema) {
+		StdOut.println("*****************************************************************");
+		StdOut.println("Cantidad Estudiantes");
+		StdOut.println("*****************************************************************");
+		String resp = sistema.ObtenerCantidadEstudiante();
+		StdOut.println(resp);
+	}
+	public static void CantidadActividades(SistemaActividad sistema) {
+		StdOut.println("*****************************************************************");
+		StdOut.println("Cantidad actividades");
+		StdOut.println("*****************************************************************");
+		String resp = sistema.ObteneCantidadActividadesdeTitulacion();
+		StdOut.println(resp);
+	}
+	public static void iniciarMenu(SistemaActividad sistema) {
+		StdOut.println("Bienvenido al sistema");
+		StdOut.println("Ingrese una opción");
+		StdOut.println("1) Informacion de actividades titulación");
+		StdOut.println("2) Información de estudiante");
+		StdOut.println("3) Cantidad de estudiantes");
+		StdOut.println("4) Cantidad de actividades de titulación");
+		StdOut.println("5) salir");
+		int opcion = StdIn.readInt();
+		//Iniciamos bucle:
+		while(opcion!=5) {
+			if(opcion==1) {
+				DesplegarActividadTitulacion(sistema);
+			}else if(opcion==2) {
+				DesplegarEstudianteBuscado(sistema);
+			}else if(opcion==3) {
+				CantidadEstudiantesActividad(sistema);
+			}else if(opcion==4) {
+				CantidadActividades(sistema);
+			}
+			StdOut.println("Ingrese una opción");
+			StdOut.println("1) Informacion de actividades titulación");
+			StdOut.println("2) Información de estudiante");
+			StdOut.println("3) Cantidad de estudiantes");
+			StdOut.println("4) Cantidad de actividades de titulación");
+			StdOut.println("5) salir");
+			opcion = StdIn.readInt();
+		}
+
+	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 		SistemaActividad sistema = new SistemaActividadImpl();
-		//abrirArchivo(sistema);
-		sistema.ingresarEstudiante("19100657", "Seba", "01","hola");
-		sistema.ingresarActividadTitulacion("01", "hola", "19100657","Seba");		
-		sistema.ingresarEstudiante("19100658", "Seba2", "02","hola2");
-		sistema.ingresarActividadTitulacion("02", "hola2", "19100658","Seba2");
-		sistema.ingresarEstudiante("123", "Seba3", "03","hola3");
-		sistema.ingresarActividadTitulacion("03", "hola3", "123","Seba3");
-		sistema.ingresarEstudiante("1234", "Seba4", "03","hola3");
-		sistema.ingresarActividadTitulacion("03", "hola3", "1234","Seba4");
-	
-		
-		DesplegarActividadTitulacion(sistema);
-		DesplegarEstudianteBuscado(sistema);
-		
+		abrirArchivo(sistema);
+		iniciarMenu(sistema);
 	}
-
 }

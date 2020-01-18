@@ -40,12 +40,5 @@ public interface SistemaActividad {
 	/**
 	* Obtiene la cantidad de actividades de titulación
 	* @return Cantidad de actividades de titulación */
-	public String ObteneCantidadActividadesdeTitulacion();
-	/**
-	 * @param codigo
-	 * @return si existe o no la actividad de titulación
-	 */
-	public boolean Contiene(String codigo);
-	
-
+	public String ObteneCantidadActividadesdeTitulacion();	
 }
